@@ -25,4 +25,7 @@ class BaseModel():
 
     def to_dict(self):
         """ returns dictionary with instance attributes """
-        return (self().__dict__)
+        selfDict = self.__dict__
+        selfDict.append({"__class__": self.__class__})
+        selfDict['created_at'] = self['created_at'].isoformat()
+        selfDict['updated_at'] = selfDict['updated_at'].isoformat()
