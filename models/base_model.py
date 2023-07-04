@@ -15,7 +15,7 @@ class BaseModel():
         """
         Initialize values
         """
-        self.id = uuid4()
+        self.id = str(uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
 
@@ -23,7 +23,7 @@ class BaseModel():
         """
         returns string representation
         """
-        return f"[{self.__class__}] ({self.id}) <{self.__dict__}>"
+        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
         """
@@ -39,3 +39,4 @@ class BaseModel():
         selfDict.append({"__class__": self.__class__})
         selfDict['created_at'] = self['created_at'].isoformat()
         selfDict['updated_at'] = selfDict['updated_at'].isoformat()
+        return selfDict
