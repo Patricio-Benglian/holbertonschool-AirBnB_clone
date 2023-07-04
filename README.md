@@ -1,5 +1,6 @@
 <div align="center">
-    <img src="https://s3.eu-west-3.amazonaws.com/hbtn.intranet/uploads/medias/2018/6/65f4a1dd9c51265f49d0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4MYA5JM5DUTZGMZG%2F20230704%2Feu-west-3%2Fs3%2Faws4_request&X-Amz-Date=20230704T150732Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=9f6adbf01c5e949c09a41252cbe636cfa8ddc44815f5d14aaf663f8e0b859fbf" height="250">
+    <img src="![65f4a1dd9c51265f49d0](https://github.com/Patricio-Benglian/holbertonschool-AirBnB_clone/assets/124268011/f1484de5-1108-4354-a206-de278f9abdfa)
+" height="250">
     <font size="+3"> <h1> Holberton AirBnB Clone </h1> </font>
 </div>
 
