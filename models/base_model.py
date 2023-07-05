@@ -4,6 +4,7 @@ base_model module
 """
 from uuid import uuid4
 from datetime import datetime
+from models import storage
 
 
 # I think it inherits Cmd?
@@ -11,6 +12,8 @@ class BaseModel():
     """
     BaseModel Superclass
     """
+    from models import storage
+
     def __init__(self, *args, **kwargs):
         """
         Initialize values
@@ -22,6 +25,8 @@ class BaseModel():
             for key, value in kwargs.items():
                 if key != "__class__":
                     setattr(self, key, value)
+        else:
+            storage.new()
 
     def __str__(self):
         """
@@ -33,6 +38,7 @@ class BaseModel():
         """
         Updates updated_at with current time
         """
+        storage.save()
         self.updated_at = datetime.now()
 
     def to_dict(self):
@@ -44,3 +50,4 @@ class BaseModel():
         selfDict['created_at'] = selfDict['created_at'].isoformat()
         selfDict['updated_at'] = selfDict['updated_at'].isoformat()
         return selfDict
+    
