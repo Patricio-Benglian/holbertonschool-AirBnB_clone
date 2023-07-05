@@ -50,4 +50,3 @@ class BaseModel():
         selfDict['created_at'] = selfDict['created_at'].isoformat()
         selfDict['updated_at'] = selfDict['updated_at'].isoformat()
         return selfDict
-    
