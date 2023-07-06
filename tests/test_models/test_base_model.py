@@ -1,14 +1,38 @@
 #!/usr/bin/python3
-"""
-test module
-"""
-import sys
 import unittest
-from models.base_model import BaseModel #doesnt work for some reason
+from datetime import datetime
+from models.base_model import BaseModel
 
 class test_BaseModel(unittest.TestCase):
-    """tests"""
-    def test_is_instance(self):
-        """ Checks if creation works """
-        instance = BaseModel()
-        print (instance.id())
+
+    def test_init(self):
+        # Test object creation with arguments
+        obj = BaseModel(name='Test', value=42)
+        self.assertEqual(obj.name, 'Test')
+        self.assertEqual(obj.value, 42)
+
+        # Test object creation without arguments
+        obj = BaseModel()
+        self.assertIsInstance(obj.id, str)
+        self.assertIsInstance(obj.created_at, datetime)
+        self.assertIsInstance(obj.updated_at, datetime)
+
+    def test_save(self):
+        obj = BaseModel()
+        initial_updated_at = obj.updated_at
+        obj.save()
+        self.assertNotEqual(initial_updated_at, obj.updated_at)
+
+    def test_to_dict(self):
+        obj = BaseModel(name='Test', value=42)
+        obj_dict = obj.to_dict()
+
+        self.assertEqual(obj_dict['__class__'], 'BaseModel')
+        self.assertEqual(obj_dict['name'], 'Test')
+        self.assertEqual(obj_dict['value'], 42)
+        self.assertIn('created_at', obj_dict)
+        self.assertIn('updated_at', obj_dict)
+
+if __name__ == '__main__':
+    unittest.main()
+    
