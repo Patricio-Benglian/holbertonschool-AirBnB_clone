@@ -6,13 +6,11 @@ from uuid import uuid4
 from datetime import datetime
 from models import storage
 
-
 # I think it inherits Cmd?
 class BaseModel():
     """
     BaseModel Superclass
     """
-    from models import storage
 
     def __init__(self, *args, **kwargs):
         """
