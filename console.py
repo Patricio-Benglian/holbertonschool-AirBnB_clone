@@ -23,7 +23,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, input):
         pass
-    
+
     def do_pass(self, input, id):
         pass
 
@@ -36,7 +36,9 @@ class HBNBCommand(cmd.Cmd):
     def do_update(self, input, id, attr_name, attr_val):
         pass
 
-
+    def emptyline(self):
+        """ Does nothing """
+        pass # Actually pass though, not placeholder
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
