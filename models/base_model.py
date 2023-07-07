@@ -21,7 +21,10 @@ class BaseModel():
         if kwargs:
             for key, value in kwargs.items():
                 if key != "__class__":
+                    if key == "updated_at" or key == "created_at":
+                        value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
                     setattr(self, key, value)
+                
         else:
             storage.new(self)
 
@@ -44,6 +47,6 @@ class BaseModel():
         """
         selfDict = self.__dict__
         selfDict["__class__"] = self.__class__.__name__
-        selfDict['created_at'] = selfDict['created_at'].isoformat()
-        selfDict['updated_at'] = selfDict['updated_at'].isoformat()
+        selfDict['created_at'] = self.created_at.isoformat()
+        selfDict['updated_at'] = self.updated_at.isoformat()
         return selfDict
