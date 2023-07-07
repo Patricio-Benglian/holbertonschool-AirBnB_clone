@@ -44,6 +44,8 @@ class FileStorage():
             with open(FileStorage.__file_path, mode="r") as f:
                 objects = json.load(f)
                 for k, v in objects.items():
+                    # breaks creating objects on second execution of
+                    # console if i make BaseModel dynamic
                     self.__objects[k] = BaseModel(**v)
         except FileNotFoundError:
             pass
