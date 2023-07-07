@@ -6,21 +6,29 @@ import json
 
 
 class FileStorage():
-    """ serializes and deserializes json """
+    """
+    serializes and deserializes json
+    """
     __file_path = "file.json"
     __objects = {}  # dict. empty at first
 
     def all(self):
-        """ returns __objects dict """
+        """
+        returns __objects dict
+        """
         return FileStorage.__objects
 
     def new(self, obj):
-        """ sets obj with key in __objects """
+        """
+        sets obj with key in __objects
+        """
         key = obj.__class__.__name__ + "." + obj.id
         FileStorage.__objects[key] = obj
 
     def save(self):
-        """ serializes __objects to JSON file """
+        """
+        serializes __objects to JSON file
+        """
         jsonDict = {}
         for k, v in self.__objects.items():
             jsonDict[k] = v.to_dict()
@@ -28,7 +36,9 @@ class FileStorage():
             json.dump(jsonDict, f)
 
     def reload(self):
-        """ deserializes JSON to __objects """
+        """
+        deserializes JSON to __objects
+        """
         from models.base_model import BaseModel
         try:
             with open(FileStorage.__file_path, mode="r") as f:
