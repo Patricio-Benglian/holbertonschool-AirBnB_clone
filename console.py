@@ -10,9 +10,10 @@ from models import storage
 class HBNBCommand(cmd.Cmd):
     """ Does commands i guess """
     prompt = "(hbnb) "
-    acceptableClasses = {
-        "BaseModel"
-    }
+    acceptableClasses = [
+        "BaseModel",
+        "User"  # is not found or read ever
+    ]
 
     def verifyArgs(self, args, doupdate=False):
         """verifies Class and Instance ID"""
@@ -116,7 +117,7 @@ class HBNBCommand(cmd.Cmd):
         attrName = args[2]
         attrValue = args[3]
         key = f"{className}.{instanceID}"
-        # Cringe fix because it passes string quotes as string
+        # Cringe fix because it passes double quotes as string
         if attrValue[0] == '"' and attrValue[-1] == '"':
             attrValue = attrValue[1:-1]
         setattr(storage.all()[key], attrName, attrValue)
