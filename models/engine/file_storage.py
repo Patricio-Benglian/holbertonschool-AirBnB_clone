@@ -8,7 +8,7 @@ import json
 class FileStorage():
     """ serializes and deserializes json """
     __file_path = "file.json"
-    __objects = {} # dict. empty at first
+    __objects = {}  # dict. empty at first
 
     def all(self):
         """ returns __objects dict """
@@ -31,7 +31,7 @@ class FileStorage():
         """ deserializes JSON to __objects """
         from models.base_model import BaseModel
         try:
-            with open(FileStorage.__file_path, mode="r", encoding="utf-8") as f:
+            with open(FileStorage.__file_path, mode="r") as f:
                 objects = json.load(f)
                 for k, v in objects.items():
                     self.__objects[k] = BaseModel(**v)

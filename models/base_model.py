@@ -6,6 +6,7 @@ from uuid import uuid4
 from datetime import datetime
 from models import storage
 
+
 class BaseModel():
     """
     BaseModel Superclass
@@ -19,12 +20,12 @@ class BaseModel():
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
         if kwargs:
-            for key, value in kwargs.items():
+            for key, val in kwargs.items():
                 if key != "__class__":
                     if key == "updated_at" or key == "created_at":
-                        value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
-                    setattr(self, key, value)
-                
+                        val = datetime.strptime(val, "%Y-%m-%dT%H:%M:%S.%f")
+                    setattr(self, key, val)
+
         else:
             storage.new(self)
 

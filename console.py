@@ -38,7 +38,9 @@ class HBNBCommand(cmd.Cmd):
 
     def emptyline(self):
         """ Does nothing """
-        pass # Actually pass though, not placeholder
+        # Actually pass though, not placeholder
+        pass
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
