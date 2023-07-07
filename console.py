@@ -102,8 +102,9 @@ class HBNBCommand(cmd.Cmd):
             for object in storage.all():
                 if object.__class__ == input:
                     print(storage.all()[object], sep="")
+        print ('["', end="")
         for object in storage.all():
-            print(storage.all()[object], sep="")
+            print(storage.all()[object], sep="", end='"]\n')
 
     def do_update(self, input):
         """updates attribute of an instance"""
