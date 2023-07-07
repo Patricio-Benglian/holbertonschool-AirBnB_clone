@@ -46,7 +46,7 @@ class BaseModel():
         """
         returns dictionary with instance attributes
         """
-        selfDict = self.__dict__
+        selfDict = self.__dict__.copy()
         selfDict["__class__"] = self.__class__.__name__
         selfDict['created_at'] = self.created_at.isoformat()
         selfDict['updated_at'] = self.updated_at.isoformat()
