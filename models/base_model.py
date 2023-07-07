@@ -6,7 +6,6 @@ from uuid import uuid4
 from datetime import datetime
 from models import storage
 
-# I think it inherits Cmd?
 class BaseModel():
     """
     BaseModel Superclass
@@ -19,12 +18,12 @@ class BaseModel():
         self.id = str(uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
-        if kwargs is not None:
+        if kwargs:
             for key, value in kwargs.items():
                 if key != "__class__":
                     setattr(self, key, value)
         else:
-            storage.new()
+            storage.new(self)
 
     def __str__(self):
         """
@@ -36,8 +35,8 @@ class BaseModel():
         """
         Updates updated_at with current time
         """
-        storage.save()
         self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
         """
