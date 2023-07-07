@@ -19,21 +19,27 @@ class HBNBCommand(cmd.Cmd):
         quit()
 
     def do_create(self, input):
+        """placeholder"""
         pass
 
     def do_show(self, input):
+        """placeholder"""
         pass
 
     def do_pass(self, input, id):
+        """placeholder"""
         pass
 
     def do_destroy(self, input, id):
+        """placeholder"""
         pass
 
     def do_all(self, input):
+        """placeholder"""
         pass
 
     def do_update(self, input, id, attr_name, attr_val):
+        """placeholder"""
         pass
 
     def emptyline(self):
