@@ -78,7 +78,6 @@ class HBNBCommand(cmd.Cmd):
         storage.save()
         print(instance.id)
 
-
     def do_show(self, input):
         """prints str representation of instance"""
         args = self.split(input)
@@ -87,7 +86,7 @@ class HBNBCommand(cmd.Cmd):
         className = args[0]
         instanceID = args[1]
         key = f"{className}.{instanceID}"
-        print (storage.all()[key])
+        print(storage.all()[key])
 
     def do_destroy(self, input):
         """Deletes an instance"""
