@@ -4,6 +4,7 @@ content module
 """
 import cmd
 from models.base_model import BaseModel
+from models.user import User
 from models import storage
 
 
@@ -95,17 +96,23 @@ class HBNBCommand(cmd.Cmd):
         storage.save()
 
     def do_all(self, input):
-        """placeholder"""
+        """shows all classes or all of type"""
         if input:
             if input not in HBNBCommand.acceptableClasses:
                 print("** class doesn't exist **")
                 return
             for object in storage.all():
-                if object.__class__ == input:
-                    print(storage.all()[object], sep="")
-        print ('["', end="")
-        for object in storage.all():
-            print(storage.all()[object], sep="", end='"]\n')
+                if isinstance(storage.all()[object], eval(input)):
+                    print(storage.all()[object], end=" ")
+            print()
+        # output has [""] around the printed stuff
+        # print ('["', end="")
+        # doesnt print ", " between everything. maybe make string
+        # and print the string just the once
+        else:
+            for object in storage.all():
+                print(storage.all()[object], end=" ")
+            print()
 
     def do_update(self, input):
         """updates attribute of an instance"""
