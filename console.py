@@ -105,22 +105,19 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, input):
         """shows all classes or all of type"""
+        output = []
         if input:
             if input not in HBNBCommand.acceptableClasses:
                 print("** class doesn't exist **")
                 return
             for object in storage.all():
                 if isinstance(storage.all()[object], eval(input)):
-                    print(storage.all()[object], end=" ")
-            print()
-        # output has [""] around the printed stuff
-        # print ('["', end="")
-        # doesnt print ", " between everything. maybe make string
-        # and print the string just the once
+                    output.append(str(storage.all()[object]))
+            print(output)
         else:
             for object in storage.all():
-                print(storage.all()[object], end=" ")
-            print()
+                output.append(str(storage.all()[object]))
+            print(output)
 
     def do_update(self, input):
         """updates attribute of an instance"""
