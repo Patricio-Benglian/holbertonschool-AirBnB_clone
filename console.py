@@ -5,6 +5,7 @@ content module
 import cmd
 from models.base_model import BaseModel
 from models.user import User
+from models.state import State
 from models import storage
 
 
@@ -13,7 +14,12 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
     acceptableClasses = [
         "BaseModel",
-        "User"  # is not found or read ever
+        "User",
+        "State",
+        "Amenity",
+        "Place",
+        "Review",
+        "City"
     ]
 
     def verifyArgs(self, args, doupdate=False):
