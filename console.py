@@ -48,7 +48,6 @@ class HBNBCommand(cmd.Cmd):
                 return False
         return True
 
-
     def split(self, string):
         list = string.split()
         return list
@@ -65,13 +64,13 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, input):
         """creates instance of BaseModel"""
         if input is None:
-            print ("** class name missing **")
+            print("** class name missing **")
         elif input not in HBNBCommand.acceptableClasses:
             print("** class doesn't exist **")
         instance = eval(input + "()")
         storage.new(instance)
         storage.save()
-        print (instance.id)
+        print(instance.id)
 
 
     def do_show(self, input):
