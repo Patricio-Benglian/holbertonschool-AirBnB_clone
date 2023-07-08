@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 """
-state module
+amenity module
 """
 from models.base_model import BaseModel
 
 
-class State(BaseModel):
+class Amenity(BaseModel):
     """
-    State Class
+    Amenity Class
     """
     name = ""
