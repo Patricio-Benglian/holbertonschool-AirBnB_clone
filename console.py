@@ -4,7 +4,13 @@ content module
 """
 import cmd
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
 from models import storage
+from models.place import Place
+from models.amenity import Amenity
+from models.city import City
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
@@ -12,7 +18,12 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
     acceptableClasses = [
         "BaseModel",
-        "User"  # is not found or read ever
+        "User",
+        "State",
+        "Amenity",
+        "Place",
+        "Review",
+        "City"
     ]
 
     def verifyArgs(self, args, doupdate=False):
@@ -47,7 +58,6 @@ class HBNBCommand(cmd.Cmd):
                 return False
         return True
 
-
     def split(self, string):
         list = string.split()
         return list
@@ -64,14 +74,13 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, input):
         """creates instance of BaseModel"""
         if input is None:
-            print ("** class name missing **")
+            print("** class name missing **")
         elif input not in HBNBCommand.acceptableClasses:
             print("** class doesn't exist **")
         instance = eval(input + "()")
         storage.new(instance)
         storage.save()
-        print (instance.id)
-
+        print(instance.id)
 
     def do_show(self, input):
         """prints str representation of instance"""
@@ -81,7 +90,7 @@ class HBNBCommand(cmd.Cmd):
         className = args[0]
         instanceID = args[1]
         key = f"{className}.{instanceID}"
-        print (storage.all()[key])
+        print(storage.all()[key])
 
     def do_destroy(self, input):
         """Deletes an instance"""
@@ -95,17 +104,20 @@ class HBNBCommand(cmd.Cmd):
         storage.save()
 
     def do_all(self, input):
-        """placeholder"""
+        """shows all classes or all of type"""
+        output = []
         if input:
             if input not in HBNBCommand.acceptableClasses:
                 print("** class doesn't exist **")
                 return
             for object in storage.all():
-                if object.__class__ == input:
-                    print(storage.all()[object], sep="")
-        print ('["', end="")
-        for object in storage.all():
-            print(storage.all()[object], sep="", end='"]\n')
+                if isinstance(storage.all()[object], eval(input)):
+                    output.append(str(storage.all()[object]))
+            print(output)
+        else:
+            for object in storage.all():
+                output.append(str(storage.all()[object]))
+            print(output)
 
     def do_update(self, input):
         """updates attribute of an instance"""
