@@ -36,6 +36,9 @@
   .locations {
     border-right: #DDDDDD solid 1px;
   }
+  .locations h2 {
+    font-size: 16px;
+  }
   h3 {
     font-weight: 600;
     margin: 0;
@@ -53,11 +56,28 @@ ul.popover {
     border-radius: 4px;
     position: absolute;
     list-style: none;
+    right: 0;
     top: 100%;
     margin: 0;
+    padding-left: 44px;
 }
 .locations:hover ul.popover,
 .amenities:hover ul.popover,
 ul.popover:hover ul.popover {
     display:block;
+}
+ul.popover ul {
+    list-style: none;
+    position: relative;
+    left: -10%;
+    margin-top: -7px;
+}
+ul.popover ul li {
+    padding: 3px;
+}
+ul.popover ul:last-child li:last-child {
+    padding-bottom: 30px;
+}
+ul.popover li {
+    padding-top: 5px;
 }
